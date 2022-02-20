@@ -3,28 +3,30 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 
 const config = require("./config.json");
 
+const knex = require('knex')({
+  client: 'pg',
+  version: '7.2',
+  connection: {
+    host : process.env.PG_HOST,
+    port : process.env.PG_PORT,
+    user : process.env.PG_USER,
+    password : process.env.PG_PASSWORD,
+    database : process.env.PG_DATABASE
+  }
+});
+
 client.on('ready',() => {
-    console.log('Ready to suffer!');
+  console.log('Ready to suffer!');
 })
 
+client.on('messageCreate', message => {
+  if (message.author.bot) return;
+  playerChecker();
+})
 client.login(process.env.TOKEN)
 
-//Heroku Postgres stuff
-const { pgClient } = require('pg');
-
-const db = new pgClient({
-  connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
-});
-
-db.connect();
-
-db.query('SELECT table_schema,table_name FROM information_schema.tables;', (err, res) => {
-  if (err) throw err;
-  for (let row of res.rows) {
-    console.log(JSON.stringify(row));
-  }
-  db.end();
-});
+function playerChecker(ctx)
+{
+  //server check
+  ctx.reply(ctx.guildId)
+}
