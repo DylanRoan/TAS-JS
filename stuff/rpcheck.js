@@ -30,6 +30,10 @@ module.exports = async (ctx) =>
     {
         if (channel.isThread() && !x.enablethread)
         {
+            return
+        }
+        else if (channel.isThread())
+        {
             channel = channel.parent
         }
 
