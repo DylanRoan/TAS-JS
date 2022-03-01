@@ -7,6 +7,9 @@ exports.run = async (client, ctx, args) =>
         var table = 'p'+ctx.guildId;
         var x = await db.get(table)
 
+        var configTable = 'c'+ctx.guildId;
+        var config = await db.get(configTable)
+
         var embed = new MessageEmbed()
         .setColor('#facb62')
         .setTitle("XP Editor")
@@ -37,6 +40,18 @@ exports.run = async (client, ctx, args) =>
 
                         await db.set(table, column, total)
                         embed.setDescription(xp + " (" + edit + ") -> " + total)
+
+                        var logchan = ctx.guild.channels.cache.find(c => c.id == config.logchan)
+                        if (logchan)
+                        {
+                            var log = new MessageEmbed()
+                            .setColor('#facb62')
+                            .setTitle("Edit Log")
+                            .setAuthor({ name: ctx.author.username, iconURL: ctx.author.avatarURL()})
+                            .setDescription(xp + " (" + edit + ") -> " + total)
+                            .setFooter({ text: 'Editting user ' + carg});
+                            logchan.send({ embeds: [log] });
+                        }
                     }
                     else
                     {
