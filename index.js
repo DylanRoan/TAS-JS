@@ -9,7 +9,12 @@ require('dotenv').config();
 const fs = require("fs");
 
 client.commands = new Discord.Collection();
-client.config = {'prefix': 'tas!'};
+
+var config = {}
+config['prefix'] = process.env.prefix
+client.config = config;
+console.log("Prefix is " + config.prefix)
+
 const events = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 for (const file of events) {
   const eventName = file.split(".")[0];

@@ -15,7 +15,8 @@ exports.run = async (client, ctx, args) =>
         .setFooter({ text: client.config.prefix+'config [option] [change]'});
 
     options.shift()
-
+    options.push("help")
+    
     if (args.length > 0)
     {
         if (options.includes(args[0]))
@@ -32,7 +33,7 @@ exports.run = async (client, ctx, args) =>
             }
             embed
             .setDescription('Invalid Argument.')
-            .addField('Options', a)
+            .addField('Help', "Run `" + client.config.prefix + "config help` to get a list of all the valid subcommands and their brief descriptions.")
         }
     }
     else
@@ -61,13 +62,13 @@ exports.run = async (client, ctx, args) =>
         {
             pwsp = "Post"
         }
-        p2 += "Per Word(1)/Sentence(2)/Post(3) [`" + options[7] + "`]: ` XP per " + pwsp + "`\n"
+        p2 += "Per Word/Sentence/Post [`" + options[7] + "`]: `XP per " + pwsp + "`\n"
 
         p2 += "Valid Sentences per Post [`" + options[8] + "`]: `" + x.reqs + "`\n"
         p2 += "Valid Words per Sentence [`" + options[9] + "`]: `" + x.reqwps + "`\n"
         p2 += "Valid Letters per Word [`" + options[10] + "`]: `" + x.reqwl + "`"
 
-        embed.addFields({name: 'Channels Config', value: p1, inline: true}, {name: 'XP Config', value: p2, inline: true});
+        embed.addFields({name: 'Channels Config', value: p1, inline: true}, {name: 'XP Config', value: p2, inline: true}, {name: "Help", value: "Run `" + client.config.prefix + "config help` to get a list of all the valid subcommands and their brief descriptions."});
     }
 
     ctx.channel.send({ embeds: [embed] });
