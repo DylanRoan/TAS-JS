@@ -97,7 +97,10 @@ module.exports = async (ctx) =>
         xp = xp * x.xpm
         
         var total = parseInt(p) + xp
-
+        if (total >= 9000000000000000000)
+        {
+            total = 9000000000000000000
+        }
         var logchan = ctx.guild.channels.cache.find(c => c.id == x.logchan)
         if (logchan)
         {
