@@ -10,7 +10,7 @@ exports.run = async (client, ctx, args) =>
         var table = "p"+ctx.guildId
         var player = "p"+ctx.author.id
         var x = await db.get(table)
-        var old = x[column]
+        var old = x[player]
 
         await db.set(table, player, 0)
         ctx.channel.send("<@" + ctx.author.id + "> has been set to 0.")
