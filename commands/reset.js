@@ -13,7 +13,7 @@ exports.run = async (client, ctx, args) =>
         var old = p[player]
 
         await db.set(table, player, 0)
-        ctx.channel.send("<@" + ctx.author.id + "> has been set to 0.")
+        ctx.channel.send("<@" + ctx.author.id + "> has been set from " + old + " to 0.")
 
         var logchan = ctx.guild.channels.cache.find(c => c.id == x.logchan)
         if (logchan)
