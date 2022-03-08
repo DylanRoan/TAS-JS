@@ -57,7 +57,7 @@ module.exports.playerInit = async (ctx) =>
     var xpTable = 'p'+guildId;
   
     var player = ctx.author.id;
-    await queryDB('ALTER TABLE ' + xpTable + ' ADD COLUMN IF NOT EXISTS p' + player + ' INTEGER;', []);
+    await queryDB('ALTER TABLE ' + xpTable + ' ADD COLUMN IF NOT EXISTS p' + player + ' BIGINT;', []);
   
     var tab = await queryDB('SELECT DISTINCT p' + player + ' FROM ' + xpTable + ';', []);
     if (tab.rows[0]['p'+player] == null) { await queryDB('UPDATE ' + xpTable + ' SET p' + player + ' = 0 WHERE id = 0;', []) }
