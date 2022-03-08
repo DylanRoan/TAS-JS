@@ -46,7 +46,7 @@ exports.run = async (client, ctx, args) =>
         p1 += (x.blackcat) ? "Blacklisted Categories [`" + options[3] + "`]: `list`\n" : "Blacklisted Categories [`" + options[3] + "`]: `None`\n"
         p1 += (x.logchan) ? "Log Channel [`" + options[4] + "`]: <#" + x.logchan + ">\n" : "Log Channel [`" + options[4] + "`]: `None`\n"
         p1 += "Threads Enabled [`" + options[5] + "`]: `" + x.enablethread + "`"
-    
+        
         p2 = "XP Multiplier [`" + options[6] + "`]: `" + x.xpm + "`\n"
 
         var pwsp = ""
@@ -66,7 +66,8 @@ exports.run = async (client, ctx, args) =>
 
         p2 += "Valid Sentences per Post [`" + options[8] + "`]: `" + x.reqs + "`\n"
         p2 += "Valid Words per Sentence [`" + options[9] + "`]: `" + x.reqwps + "`\n"
-        p2 += "Valid Letters per Word [`" + options[10] + "`]: `" + x.reqwl + "`"
+        p2 += "Valid Letters per Word [`" + options[10] + "`]: `" + x.reqwl + "`\n"
+        p2 += "Player Self Reset [`" + options[11] + "`]: `" + x.selfreset + "`"
 
         embed.addFields({name: 'Channels Config', value: p1, inline: true}, {name: 'XP Config', value: p2, inline: true}, {name: "Help", value: "Run `" + client.config.prefix + "config help` to get a list of all the valid subcommands and their brief descriptions."});
     }

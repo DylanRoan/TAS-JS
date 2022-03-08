@@ -39,8 +39,15 @@ exports.run = async (client, ctx, embed, x, args) =>
             name: 'Word/Sentence/Post',
             value:
             '`pwsp` : Determines if xp is gained per valid word, sentence, or post.\n\n' +
-            'Usage: `' + client.config.prefix + 'config pwsp [1/word/2/sentence/3/post]]`\n' +
+            'Usage: `' + client.config.prefix + 'config pwsp [1/word/2/sentence/3/post]`\n' +
             'Example: `' + client.config.prefix + 'config pwsp post`'
+        },
+        {
+            name: 'Misc',
+            value:
+            '`selfreset` : Determines if player is permitted to reset self to 0.\n\n' +
+            'Usage: `' + client.config.prefix + 'config selfreset [true/enable/false/disable]`\n' +
+            'Example: `' + client.config.prefix + 'config selfreset false`'
         }
     )
     return embed

@@ -43,11 +43,11 @@ module.exports.serverInit = async (ctx) =>
     reqwps INT : Required amount of words per sentence before sentence is valid : 0
     reqwl INT : Required amounr of letters per word before word is valid : 0
     */
-    await queryDB('CREATE TABLE IF NOT EXISTS ' + configTable + ' (id INT, valchan VARCHAR(20)[], blackchan VARCHAR(20)[], valcat VARCHAR(20)[], blackcat VARCHAR(20)[], logchan VARCHAR(20), enablethread BOOL, xpm INT, pwsp INT, reqs INT, reqwps INT, reqwl INT);', [])
+    await queryDB('CREATE TABLE IF NOT EXISTS ' + configTable + ' (id INT, valchan VARCHAR(20)[], blackchan VARCHAR(20)[], valcat VARCHAR(20)[], blackcat VARCHAR(20)[], logchan VARCHAR(20), enablethread BOOL, xpm INT, pwsp INT, reqs INT, reqwps INT, reqwl INT, selfreset BOOL);', [])
     var x = await queryDB('SELECT DISTINCT id FROM ' + configTable + ';', []);
     
     //Set id to 0
-    if (x.rows.length == 0) { await queryDB('INSERT INTO ' + configTable + ' (id, valchan, blackchan, valcat, blackcat, logchan, enablethread, xpm, pwsp, reqs, reqwps, reqwl) VALUES (0, null, null, null, null, null, false, 1, 3, 0, 0, 0);', []) }
+    if (x.rows.length == 0) { await queryDB('INSERT INTO ' + configTable + ' (id, valchan, blackchan, valcat, blackcat, logchan, enablethread, xpm, pwsp, reqs, reqwps, reqwl) VALUES (0, null, null, null, null, null, false, 1, 3, 0, 0, 0, false);', []) }
     x = await queryDB('SELECT * FROM ' + configTable + ';', []);
 }
 

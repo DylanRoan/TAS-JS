@@ -11,7 +11,7 @@ exports.run = async (client, ctx, args) =>
         .setColor('#facb62')
         .setTitle("Purge " + ctx.guild.name)
         .setAuthor({ name: ctx.author.username, iconURL: ctx.author.avatarURL()})
-        .setDescription("Current unavailable. Join the server in my description and ask `Unsung Melody` to purge it for you.")
+        .setDescription("Currently unavailable. Join the server in my description and ask `Unsung Melody` to purge it for you.")
         
         ctx.channel.send({ embeds: [embed] });
         return
