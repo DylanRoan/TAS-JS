@@ -9,6 +9,7 @@ exports.run = async (client, ctx, args) =>
     {
         var table = "p"+ctx.guildId
         var player = "p"+ctx.author.id
+        var old = await db.get(table, player)
         await db.set(table, player, 0)
         ctx.channel.send("<@" + ctx.author.id + "> has been set to 0.")
 
@@ -19,7 +20,7 @@ exports.run = async (client, ctx, args) =>
             .setColor('#facb62')
             .setTitle("Self Reset")
             .setAuthor({ name: ctx.author.username, iconURL: ctx.author.avatarURL()})
-            .setDescription("<@" + ctx.author.id + "> has been set to 0.")
+            .setDescription("<@" + ctx.author.id + "> has been set from " + old + " to 0.")
             logchan.send({ embeds: [log] });
         }
     }
