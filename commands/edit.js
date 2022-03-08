@@ -38,6 +38,10 @@ exports.run = async (client, ctx, args) =>
                         else
                             total = parseInt(edit)
 
+                        if (total >= 9000000000000000000)
+                        {
+                            total = 9000000000000000000
+                        }
                         await db.set(table, column, total)
                         embed.setDescription(xp + " (" + edit + ") -> " + total)
 
