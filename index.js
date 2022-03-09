@@ -31,4 +31,12 @@ for (const file of commands) {
   client.commands.set(commandName, command);
 }
 
+client.on("ready", () =>{
+  console.log(`Logged in as ${client.user.tag}!`);
+  console.log("Ready to suffer!")
+  client.user.setActivity("stories | tas!help", {
+    type: "LISTENING"
+  });
+});
+
 client.login(process.env.TOKEN)
