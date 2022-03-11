@@ -5,15 +5,13 @@ const paginationEmbed = require('discordjs-button-pagination');
 exports.run = async (client, ctx, args) => 
 {
     var table = 'p'+ctx.guildId;
+
     var x = await db.get(table)
     delete x.id
 
     var z = sort_object(x)
 
-    var embed = new MessageEmbed()
-    .setColor('#facb62')
-    .setTitle(ctx.guild.name + "'s Players")
-    .setAuthor({ name: ctx.author.username, iconURL: ctx.author.avatarURL()})
+
 
     var embedPages = []
 
@@ -25,6 +23,11 @@ exports.run = async (client, ctx, args) =>
 
 
     for (var i = 0; i < z.length; i += 10) {
+        var embed = new MessageEmbed()
+        .setColor('#facb62')
+        .setTitle(ctx.guild.name + "'s Players")
+        .setAuthor({ name: ctx.author.username, iconURL: ctx.author.avatarURL()})
+
         var temp = z.slice(i, i + 10);
         var desc = ""
         for (var o = 0; o < temp.length; o++)
@@ -44,6 +47,7 @@ exports.run = async (client, ctx, args) =>
         embed.setDescription(desc)
         embedPages.push(embed)
     }
+    console.log(embedPages)
 
     const b1 = new MessageButton()
       .setCustomId("previousbtn")
@@ -56,8 +60,12 @@ exports.run = async (client, ctx, args) =>
       .setStyle("SUCCESS");
 
     var buttons = [b1, b2]
-
-    paginationEmbed(ctx, embedPages, buttons, 10000);
+    try {
+        paginationEmbed(ctx, embedPages, buttons, 10000);
+    } catch (error)
+    {
+        console.log(error)
+    }
 }
 
 
