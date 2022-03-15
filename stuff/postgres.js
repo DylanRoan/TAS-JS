@@ -47,7 +47,7 @@ module.exports.serverInit = async (ctx) =>
     var x = await queryDB('SELECT DISTINCT id FROM ' + configTable + ';', []);
     
     //Set id to 0
-    if (x.rows.length == 0) { await queryDB('INSERT INTO ' + configTable + ' (id, valchan, blackchan, valcat, blackcat, logchan, enablethread, xpm, pwsp, reqs, reqwps, reqwl) VALUES (0, null, null, null, null, null, false, 1, 3, 0, 0, 0, false);', []) }
+    if (x.rows.length == 0) { await queryDB('INSERT INTO ' + configTable + ' (id, valchan, blackchan, valcat, blackcat, logchan, enablethread, xpm, pwsp, reqs, reqwps, reqwl, selfreset) VALUES (0, null, null, null, null, null, false, 1, 3, 0, 0, 0, false);', []) }
     x = await queryDB('SELECT * FROM ' + configTable + ';', []);
 }
 
