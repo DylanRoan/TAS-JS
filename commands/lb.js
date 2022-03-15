@@ -4,5 +4,5 @@ const lb = require('./leaderboard.js')
 
 exports.run = async (client, ctx, args) => 
 {
-    lb.run(client, ctx, args)
+    lb.run(client, ctx, args);
 }
